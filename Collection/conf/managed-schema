@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema name="default-config" version="1.6">
+  <field name="_version_" type="long" indexed="true" stored="true" />
+  <field name="_root_" type="string" indexed="true" stored="true" docValues="false" />
+  <fieldType name="nest_path" class="solr.NestPathField" /> 
+  <field name="_nest_path_" type="nest_path" docValues="true" stored="true" />
+  <field name="_nest_parent_" type="string" docValues="true" stored="true" />
+
+  <uniqueKey>id</uniqueKey>
+  <field name="id" type="string" indexed="true" stored="true" required="true" multiValued="false" />
+  <field name="class" type="string" indexed="true" stored="true" required="true" multiValued="false" />
+  <dynamicField name="*" multiValued="false" indexed="true" stored="true" type="sortabletext" />
+  
+  <fieldType name="long" class="solr.LongPointField" />
+  <fieldType name="string" class="solr.StrField" sortMissingLast="false" />
+  <fieldType name="double" class="solr.DoublePointField" />
+  <fieldType name="date" class="solr.DatePointField" />
+  <fieldType name="sortabletext" class="solr.SortableTextField" />
+
+  <fieldType name="pdoubles" class="solr.DoublePointField" docValues="true" multiValued="true"/>
+  <fieldType name="plongs" class="solr.LongPointField" docValues="true" multiValued="true"/>
+  <fieldType name="pdates" class="solr.DatePointField" docValues="true" multiValued="true"/>
+  <fieldType name="booleans" class="solr.BoolField" sortMissingLast="true" multiValued="true"/>
+
+  <fieldType name="text_general" class="solr.TextField" positionIncrementGap="100" multiValued="true">
+  <analyzer type="index">
+    <tokenizer class="solr.StandardTokenizerFactory"/>
+    <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt" />
+    <filter class="solr.LowerCaseFilterFactory"/>
+  </analyzer>
+  <analyzer type="query">
+    <tokenizer class="solr.StandardTokenizerFactory"/>
+    <filter class="solr.StopFilterFactory" ignoreCase="true" words="stopwords.txt" />
+    <filter class="solr.SynonymGraphFilterFactory" synonyms="synonyms.txt" ignoreCase="true" expand="true"/>
+    <filter class="solr.LowerCaseFilterFactory"/>
+  </analyzer>
+
+</fieldType>
+
+</schema>

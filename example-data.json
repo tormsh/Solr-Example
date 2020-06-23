@@ -1,0 +1,26 @@
+{
+    "id": "1",
+    "class": "composition",
+    "children": [
+        {
+            "id": "2",
+            "class": "section",
+            "children": [
+                {
+                    "id": "3",
+                    "class": "observation"
+                }
+            ]
+        },
+        {
+            "id": "4",
+            "class": "section",
+            "children": [
+                {
+                    "id": "5",
+                    "class": "instruction"
+                }
+            ]
+        }
+    ]
+}
